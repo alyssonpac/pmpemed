@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rumo ao 2º Tenente QOM</title>
+<style>
+:root{--bg:#f3f5f1;--card:#fff;--ink:#1b2a22;--mut:#66756c;--line:#dde3dc;--pri:#1f4d3a;--onp:#fff;--ok:#2e7d4f;--bad:#b3402f;--warn:#b7791f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a16;--card:#1b261f;--ink:#e6eee8;--mut:#93a499;--line:#2c3a31;--pri:#6fbf94;--onp:#0f1a14;--ok:#6fcf93;--bad:#ef8a78;--warn:#e0b05a}}
+:root[data-theme="dark"]{--bg:#121a16;--card:#1b261f;--ink:#e6eee8;--mut:#93a499;--line:#2c3a31;--pri:#6fbf94;--onp:#0f1a14;--ok:#6fcf93;--bad:#ef8a78;--warn:#e0b05a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Trebuchet MS","Segoe UI",system-ui,sans-serif;padding-bottom:70px}
+h1,h2{font-family:Georgia,"Times New Roman",serif;margin:0}
+main{max-width:640px;margin:0 auto;padding:14px}
+h1{font-size:24px}h2{font-size:18px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sp{justify-content:space-between}
+.big{font:700 34px Georgia,serif;color:var(--pri)}.mut{color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pri)}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:11px 2px;font:600 12px inherit;font-family:inherit}
+nav button.on{color:var(--pri);box-shadow:inset 0 3px 0 var(--pri)}
+input,select,button.b,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;min-width:0}
+input[type=number],input[type=text]{width:100%}
+button.b{background:var(--pri);color:var(--onp);border:0;font-weight:700;padding:9px 14px}button.g{background:none;color:var(--bad);border:0;padding:4px 8px}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+summary{padding:11px 12px;font-weight:700;cursor:pointer}
+.t{display:flex;gap:8px;align-items:center;padding:7px 12px;border-top:1px solid var(--line)}.t span{flex:1}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.wn{color:var(--warn);font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;border:1px solid currentColor;font-size:12px;font-weight:700}
+label{font-size:13px;color:var(--mut);display:block;margin-bottom:3px}
+.chart{display:flex;align-items:flex-end;gap:3px;height:70px}.chart div{flex:1;background:var(--pri);border-radius:3px 3px 0 0;min-height:2px}
+</style></head><body>
+<main id="app"></main>
+<nav id="nav"></nav>
+<script>
+const D=[
+{k:'pt',n:'Língua Portuguesa',p:15,b:1,t:['Interpretação e tipologia textual','Figuras de linguagem','Relações semânticas entre orações','Ortografia e acentuação','Classes de palavras','Crase','Sintaxe da oração e do período','Funções do "que" e do "se"','Coesão textual','Pontuação','Concordância nominal e verbal','Regência','Colocação pronominal','Formação e significação de palavras','Variação linguística']},
+{k:'hp',n:'História de Pernambuco',p:5,b:1,t:['Ocupação, capitanias e Duarte Coelho','Açúcar e economia local','Formação de Olinda e Recife','Holandeses e Maurício de Nassau','Insurreição Pernambucana (1654) e Mascates (1710)','Revolução de 1817 e Confederação do Equador','Cabanos (1835) e Praieira (1848)','Quilombos e aspectos afro-brasileiros','Pernambuco republicano','Cultura popular (frevo, maracatu)']},
+{k:'gs',n:'Gestão de Saúde',p:15,b:2,t:['CF/88 – Saúde e evolução das políticas','SUS: Leis 8.080 e 8.142','Decreto 7.508, COAP, regiões, RENASES/RENAME','História natural e níveis de prevenção','Epidemiologia: medidas e desenhos de estudo','Vigilância em saúde e notificação compulsória','Indicadores de saúde','Sistemas de informação em saúde','Controle social, conselhos e conferências','Gestão de pessoas em saúde','Planejamento, monitoramento e avaliação','Direitos dos usuários e PNH','Lei 14.133 (licitações) aplicada à saúde','Materiais, estoques e logística','Informação, tecnologia, LGPD e segurança','Projetos, custos e planejamento estratégico']},
+{k:'sp',n:'Saúde Pública',p:5,b:2,t:['Atenção psicossocial e saúde mental (OMS/OPAS)','Gestão participativa e Redes de Atenção (RAS)','PNPS e Práticas Integrativas (PNPIC)','Segurança do paciente e acreditação','PNAB e Estratégia Saúde da Família','Atenção hospitalar e contratualização','Atenção domiciliar','Regulação do SUS','Vigilância em saúde (PNVS)','Saúde do trabalhador (PNSTT)']},
+{k:'ce',n:'Conhecimentos Específicos – Clínica Médica',p:30,b:3,t:['Cuidados gerais em medicina interna','Hipertensão arterial','Cardiopatia isquêmica','Miocardiopatias e valvulopatias','Arritmias cardíacas','Embolia pulmonar e HP','Abscesso pulmonar e doença intersticial','Úlcera péptica e diarreia','DII e parasitoses intestinais','Colelitíase, colecistite e pancreatite','Hepatopatias tóxicas e IH crônica','IRA e DRC','Glomerulonefrites, nefrótica e litíase renal','Diabetes mellitus','Tireoide e nódulos','Suprarrenal e paratireoide','Reumato: AR, espondiloartropatias, colagenoses, gota','Doenças infecciosas e antibioticoterapia','Distúrbios hidroeletrolíticos e ácido-base','Exames complementares de rotina','Ética, legislação e psicologia médica','Farmacologia e controle de infecção hospitalar','Medicina baseada em evidências','Intoxicações exógenas','AVC, polirradiculoneurites e neuropatias','Doenças degenerativas e infecciosas do SNC','Emergências psiquiátricas','Legislação: ECA, Estatuto da Juventude, Maria da Penha']}
+];
+const EXAM=new Date('2027-02-21T13:00:00'),PAY=new Date('2026-11-06T23:59:00');
+const TAF={M:{f:['Flexão no solo (4 apoios)',21,'rep','>'],a:['Abdominal remador (1 min)',32,'rep','>'],i:['Impulsão horizontal',1.6,'m','>'],c:['Corrida 2.400 m',900,'','<']},
+F:{f:['Flexão no solo (6 apoios)',19,'rep','>'],a:['Abdominal remador (1 min)',28,'rep','>'],i:['Impulsão horizontal',1.3,'m','>'],c:['Corrida 2.400 m',1020,'','<']}};
+const DL=[['05/10/2026','Fim da impugnação do edital',new Date('2026-10-05')],['05/11/2026','Fim das inscrições (23h59)',new Date('2026-11-05')],['06/11/2026','Pagamento do boleto + laudo de condição especial',PAY],['19/11/2026','Deferimento das inscrições',new Date('2026-11-19')],['15/02/2027','Cartão de informação',new Date('2027-02-15')],['21/02/2027','PROVA OBJETIVA + REDAÇÃO (tarde, 5h)',EXAM],['25/03/2027','Resultado preliminar da objetiva',new Date('2027-03-25')],['12/04/2027','Habilitados para correção da redação (top 60 ampla)',new Date('2027-04-12')]];
+const CK=['Inscrição feita no site do Instituto AOCP (cargo 402)','Boleto de R$ 220,00 pago','Foto 3x4 enviada','Caneta esferográfica transparente azul/preta separada','Documento oficial com foto (físico, não digital)','Cartão de informação impresso','Verificar retificações do edital no site da AOCP','Exames: sangue, oftalmo, RX coluna/joelhos, EEG, audiometria, ergométrico','Exame toxicológico (janela de 90 dias, clínica SENATRAN)','Atestado de cardiologista (RQE) para o TAF – até 30 dias antes','Diploma e CRM para a matrícula no CFOS'];
+const $=s=>document.querySelector(s),pc=(a,b)=>b?Math.round(100*a/b):0,td=()=>new Date().toISOString().slice(0,10);
+function init(){return{t:{},log:[],taf:[],sims:[],reds:[],ck:{},sex:'M'}}
+function load(){try{return Object.assign(init(),JSON.parse(localStorage.getItem('qom26')||'{}'))}catch(e){return init()}}
+let S=load(),tab='home';
+const save=()=>{try{localStorage.setItem('qom26',JSON.stringify(S))}catch(e){}};
+const T=id=>S.t[id]||(S.t[id]={d:0,q:0,c:0});
+const dstat=d=>{let q=0,c=0,n=0,dn=0;d.t.forEach((_,i)=>{const t=S.t[d.k+i];n++;if(t){q+=t.q;c+=t.c;dn+=t.d?1:0}});return{q,c,n,dn}};
+const days=d=>Math.ceil((d-new Date())/864e5);
+const tabs=[['home','Painel'],['edital','Edital'],['q','Questões'],['taf','TAF'],['prova','Provas'],['more','Prazos']];
+function nav(){$('#nav').innerHTML=tabs.map(t=>`<button class="${tab==t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')}
+function go(t){tab=t;render();scrollTo(0,0)}
+function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function parseT(v){const m=String(v).match(/^(\d+):(\d{1,2})$/);return m?+m[1]*60+ +m[2]:NaN}
+function home(){
+const tq=S.log.reduce((a,l)=>a+l.q,0),tc=S.log.reduce((a,l)=>a+l.c,0);
+let est=0,blk=[0,0,0,0],bq=[0,0,0,0],tt=0,dn=0;
+D.forEach(d=>{const s=dstat(d);tt+=s.n;dn+=s.dn;if(s.q){const a=s.c/s.q;est+=a*d.p;blk[d.b]+=a*d.p;bq[d.b]+=s.q}});
+const mins=[0,6,6,9],days7=[...Array(14)].map((_,i)=>{const x=new Date(Date.now()-(13-i)*864e5).toISOString().slice(0,10);return S.log.filter(l=>l.d==x).reduce((a,l)=>a+l.q,0)});
+const w=days7.slice(7).reduce((a,b)=>a+b,0),mx=Math.max(...days7,1);
+const bn=['','Bloco I (Port + Hist PE)','Bloco II (Gestão + SP)','Bloco III (Específicos)'];
+return `<h1>Rumo ao 2º Tenente QOM</h1><div class="mut">PMPE · Clínica Geral (cód. 402) · AOCP · 15 vagas</div>
+<div class="grid" style="margin-top:12px"><div class="card"><div class="big">${days(EXAM)}</div><div class="mut">dias para a prova (21/02/2027)</div></div>
+<div class="card"><div class="big">${Math.max(days(PAY),0)}</div><div class="mut">dias para pagar a inscrição (06/11)</div></div></div>
+<div class="card"><div class="row sp"><b>Nota estimada</b><span class="big" style="font-size:26px">${est.toFixed(1)}/70</span></div>
+<div class="mut">Meta de aprovação com folga: 52/70 (75%). Só os 60 primeiros da ampla têm a redação corrigida.</div>
+${[1,2,3].map(b=>{const mx2=b==3?30:20,ok=blk[b]>=mins[b];return `<div class="row sp" style="margin-top:8px"><span>${bn[b]}</span><span class="${!bq[b]?'mut':ok?'ok':'no'}">${blk[b].toFixed(1)}/${mx2} · corte ${mins[b]}</span></div>`}).join('')}</div>
+<div class="card"><div class="row sp"><b>Questões feitas</b><span>${tq} · ${pc(tc,tq)}% de acerto</span></div>
+<div class="row sp" style="margin-top:6px"><span>Últimos 7 dias</span><span>${w}/250</span></div><div class="bar"><i style="width:${Math.min(100,pc(w,250))}%"></i></div>
+<div class="chart" style="margin-top:12px">${days7.map(v=>`<div style="height:${v/mx*100}%" title="${v}"></div>`).join('')}</div><div class="mut">questões por dia, últimas 2 semanas</div></div>
+<div class="card"><div class="row sp"><b>Edital concluído</b><span>${dn}/${tt} tópicos</span></div><div class="bar"><i style="width:${pc(dn,tt)}%"></i></div></div>
+<div class="card"><b>Por disciplina</b>${D.map(d=>{const s=dstat(d),a=pc(s.c,s.q);return `<div class="row sp" style="margin-top:8px"><span>${d.n.replace('Conhecimentos Específicos – ','')} <span class="mut">(${d.p} q)</span></span><span class="${!s.q?'mut':a>=75?'ok':a>=60?'wn':'no'}">${s.q?a+'% · '+s.q+' q':'—'}</span></div>`}).join('')}</div>`}
+function edital(){return `<h1>Edital</h1><div class="mut">Marque o que já estudou. Os números vêm do registro de questões.</div><div style="margin-top:12px">`+D.map(d=>{const s=dstat(d);return `<details><summary>${d.n} <span class="mut">· ${d.p} questões · ${s.dn}/${s.n}</span></summary>`+d.t.map((n,i)=>{const t=S.t[d.k+i]||{d:0,q:0,c:0},a=pc(t.c,t.q);return `<div class="t"><input type="checkbox" ${t.d?'checked':''} onchange="tg('${d.k+i}',this.checked)"><span>${n}</span><small class="${!t.q?'mut':a>=75?'ok':a>=60?'wn':'no'}">${t.q?a+'% ('+t.q+')':'–'}</small></div>`}).join('')+`</details>`}).join('')+`</div>`}
+function tg(id,v){T(id).d=v?1:0;save()}
+function qs(){const r=S.log.slice(-15).reverse();return `<h1>Registrar questões</h1><div class="card"><label>Tópico</label><select id="qt" style="width:100%">${D.map(d=>`<optgroup label="${d.n}">`+d.t.map((n,i)=>`<option value="${d.k+i}">${n}</option>`).join('')+'</optgroup>').join('')}</select>
+<div class="grid" style="margin-top:8px"><div><label>Feitas</label><input type="number" id="qq" inputmode="numeric" min="1"></div><div><label>Acertos</label><input type="number" id="qc" inputmode="numeric" min="0"></div></div>
+<button class="b" style="margin-top:10px;width:100%" onclick="addq()">Salvar sessão</button></div>
+<h2>Últimos registros</h2>`+(r.length?r.map(l=>{const n=nm(l.id);return `<div class="card row sp"><div><b>${n}</b><div class="mut">${l.d} · ${l.c}/${l.q} (${pc(l.c,l.q)}%)</div></div><button class="g" onclick="dq(${l.i})">Apagar</button></div>`}).join(''):'<div class="card mut">Nenhuma sessão ainda. Registre as primeiras questões acima.</div>')}
+function nm(id){const d=D.find(x=>x.k==id.slice(0,2));return d?d.t[+id.slice(2)]:id}
+function addq(){const id=$('#qt').value,q=+$('#qq').value,c=+$('#qc').value;if(!(q>0)||c<0||c>q){alert('Informe questões feitas e acertos (acertos não pode passar do total).');return}
+const t=T(id);t.q+=q;t.c+=c;S.log.push({i:Date.now(),d:td(),id,q,c});save();render()}
+function dq(i){const k=S.log.findIndex(l=>l.i==i),l=S.log[k];if(!l)return;const t=T(l.id);t.q-=l.q;t.c-=l.c;S.log.splice(k,1);save();render()}
+function taf(){const X=TAF[S.sex],last=S.taf.filter(r=>r.sex==S.sex).slice(-1)[0];
+const st=(k,v)=>{if(v==null||isNaN(v))return'';const ok=X[k][3]=='>'?v>=X[k][1]:v<=X[k][1];return `<span class="${ok?'ok':'no'}">${ok?'apto':'abaixo'}</span>`};
+return `<h1>TAF</h1><div class="mut">Quadro de Oficiais Médicos: 4 testes, todos obrigatórios (itens 14.3 e 14.8). Cada teste é uma tentativa, exceto a impulsão (até 3).</div>
+<div class="row" style="margin:10px 0"><button class="b" style="${S.sex=='M'?'':'opacity:.5'}" onclick="S.sex='M';save();render()">Masculino</button><button class="b" style="${S.sex=='F'?'':'opacity:.5'}" onclick="S.sex='F';save();render()">Feminino</button></div>
+<div class="card"><b>Índices mínimos</b>${Object.keys(X).map(k=>`<div class="row sp mut" style="margin-top:4px"><span>${X[k][0]}</span><span>${X[k][3]=='>'?'mín. ':'máx. '}${k=='c'?fmt(X[k][1]):X[k][1]+' '+X[k][2]}</span></div>`).join('')}</div>
+<div class="card"><b>Registrar treino</b><div class="grid" style="margin-top:8px">
+<div><label>${X.f[0]}</label><input type="number" id="tf" inputmode="numeric"></div><div><label>${X.a[0]}</label><input type="number" id="ta" inputmode="numeric"></div>
+<div><label>Impulsão (m)</label><input type="number" id="ti" step="0.01" inputmode="decimal"></div><div><label>Corrida (mm:ss)</label><input type="text" id="tc" placeholder="14:30"></div></div>
+<button class="b" style="margin-top:10px;width:100%" onclick="addt()">Salvar treino</button></div>
+${last?`<div class="card"><b>Último treino (${last.d})</b>${[['f',last.f],['a',last.a],['i',last.i],['c',last.c]].map(([k,v])=>`<div class="row sp" style="margin-top:4px"><span>${X[k][0]}</span><span>${v==null?'–':k=='c'?fmt(v):v} ${st(k,v)}</span></div>`).join('')}</div>`:''}
+<h2>Histórico</h2>`+S.taf.filter(r=>r.sex==S.sex).slice(-8).reverse().map(r=>`<div class="card mut row sp"><span>${r.d} · ${r.f??'–'} flex · ${r.a??'–'} abd · ${r.i??'–'} m · ${r.c!=null?fmt(r.c):'–'}</span><button class="g" onclick="dt(${r.id})">Apagar</button></div>`).join('')}
+function addt(){const g=i=>$('#'+i).value===''?null:+$('#'+i).value,c=$('#tc').value?parseT($('#tc').value):null;
+if(c!==null&&isNaN(c)){alert('Corrida deve estar no formato mm:ss, por exemplo 14:30.');return}
+const r={id:Date.now(),d:td(),sex:S.sex,f:g('tf'),a:g('ta'),i:g('ti'),c};if(r.f==null&&r.a==null&&r.i==null&&c==null){alert('Preencha ao menos um teste.');return}S.taf.push(r);save();render()}
+function dt(id){S.taf=S.taf.filter(r=>r.id!=id);save();render()}
+function prova(){return `<h1>Simulados e redação</h1>
+<div class="card"><b>Novo simulado (70 questões, 5h)</b><div class="grid" style="margin-top:8px"><div><label>Bloco I (de 20)</label><input type="number" id="s1" max="20" min="0"></div><div><label>Bloco II (de 20)</label><input type="number" id="s2" max="20" min="0"></div><div><label>Bloco III (de 30)</label><input type="number" id="s3" max="30" min="0"></div></div>
+<button class="b" style="margin-top:10px;width:100%" onclick="adds()">Salvar simulado</button></div>`+
+S.sims.slice().reverse().slice(0,6).map(s=>{const t=s.a+s.b+s.c,ok=s.a>=6&&s.b>=6&&s.c>=9;return `<div class="card row sp"><span>${s.d} · ${s.a}/${s.b}/${s.c} = <b>${t}/70</b></span><span><span class="pill ${ok?'ok':'no'}">${ok?'passa nos cortes':'abaixo de corte'}</span> <button class="g" onclick="ds(${s.id})">×</button></span></div>`}).join('')+
+`<div class="card" style="margin-top:14px"><b>Nova redação (15 a 20 linhas)</b><div class="mut">Pesos para 2º Tenente: tema 8, coesão 8, estrutura 7, gramática 7. Mínimo 9/30. Fugir do tema zera.</div>
+<div class="grid" style="margin-top:8px"><div><label>Tema (0-8)</label><input type="number" id="r1" max="8" min="0" step="0.5"></div><div><label>Coesão (0-8)</label><input type="number" id="r2" max="8" min="0" step="0.5"></div><div><label>Estrutura (0-7)</label><input type="number" id="r3" max="7" min="0" step="0.5"></div><div><label>Gramática (0-7)</label><input type="number" id="r4" max="7" min="0" step="0.5"></div></div>
+<button class="b" style="margin-top:10px;width:100%" onclick="addr()">Salvar redação</button></div>`+
+S.reds.slice().reverse().slice(0,6).map(r=>{const t=r.s.reduce((a,b)=>a+b,0);return `<div class="card row sp"><span>${r.d} · ${r.s.join(' / ')} = <b>${t}/30</b></span><span><span class="pill ${t>=9?'ok':'no'}">${t>=9?'acima do mínimo':'abaixo de 9'}</span> <button class="g" onclick="dr(${r.id})">×</button></span></div>`}).join('')}
+function adds(){const a=+$('#s1').value,b=+$('#s2').value,c=+$('#s3').value;if(a>20||b>20||c>30||a<0||b<0||c<0||$('#s1').value===''){alert('Confira os acertos: máximo 20, 20 e 30.');return}S.sims.push({id:Date.now(),d:td(),a,b,c});save();render()}
+function ds(id){S.sims=S.sims.filter(s=>s.id!=id);save();render()}
+function addr(){const s=[1,2,3,4].map(i=>+$('#r'+i).value),m=[8,8,7,7];if(s.some((v,i)=>v<0||v>m[i])){alert('Notas fora do limite de cada critério.');return}S.reds.push({id:Date.now(),d:td(),s});save();render()}
+function dr(id){S.reds=S.reds.filter(r=>r.id!=id);save();render()}
+function more(){return `<h1>Prazos e checklist</h1><div class="card">${DL.map(x=>{const n=days(x[2]);return `<div class="row sp" style="margin-bottom:8px"><span><b>${x[0]}</b> ${x[1]}</span><span class="${n<0?'mut':n<=14?'no':'ok'}">${n<0?'passou':n+' d'}</span></div>`}).join('')}</div>
+<h2>Checklist</h2><div class="card">${CK.map((c,i)=>`<label style="display:flex;gap:8px;color:var(--ink);font-size:14px;margin-bottom:8px"><input type="checkbox" ${S.ck[i]?'checked':''} onchange="S.ck[${i}]=this.checked?1:0;save()"> ${c}</label>`).join('')}</div>
+<h2>Backup</h2><div class="card"><div class="mut">Seus dados ficam só neste navegador. Exporte para guardar ou mover de aparelho.</div><textarea id="bk" rows="3" style="width:100%;margin-top:8px"></textarea>
+<div class="row" style="margin-top:8px"><button class="b" onclick="$('#bk').value=JSON.stringify(S)">Exportar</button><button class="b" onclick="imp()">Importar</button></div></div>
+<div class="mut">Datas do cronograma oficial (Anexo I). O edital tem erros de digitação; confirme retificações no site do Instituto AOCP.</div>`}
+function imp(){try{S=Object.assign(init(),JSON.parse($('#bk').value));save();render()}catch(e){alert('Texto de backup inválido. Cole exatamente o que foi exportado.')}}
+function render(){nav();$('#app').innerHTML={home,edital,q:qs,taf,prova,more}[tab]()}
+render();
+</script></body></html>
